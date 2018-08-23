@@ -1,0 +1,167 @@
+version: '3'
+services:
+  # Load balancer
+  # Edit subdomains in windows hosts file:
+  # (C:\Windows\System32\Drivers\etc\hosts)
+  # Example: 
+  # 127.0.0.1       traefik.localhost
+  traefik:
+    container_name: traefik
+    image: traefik:1.7-alpine
+    restart: always
+    ports:
+      - 80:80
+    labels:
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
+    command: --web --logLevel=DEBUG --docker 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core
+
+  # Docker management gui
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    restart: always
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ${VOLUME_PATH}portainer:/data
+    command: --no-auth
+    labels:
+      - traefik.port=9000
+      - traefik.frontend.rule=Host:portainer.${SERVER_DOMAIN}
+    networks:
+      - core
+
+  # Simple web portal to whow links to services on the site
+  portal:
+    container_name: portal
+    image: lowet84/traefik-portal
+    restart: always
+    labels:
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
+    environment:
+      - TRAEFIK=http://traefik:8080
+    networks:
+      - core
+
+  # Repository manager (used for Docker registry)
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - ${VOLUME_PATH}nexus:/nexus-data:rw
+    labels:
+      - traefik.nexus.port=8081
+      - traefik.nexus.frontend.rule=Host:nexus.${SERVER_DOMAIN}
+      - traefik.docker.port=9000
+      - traefik.docker.frontend.rule=Host:docker.${SERVER_DOMAIN}
+    networks:
+      - core
+
+  # Git repo
+  gogs:
+    container_name: gogs
+    image: gogs/gogs
+    restart: always
+    volumes:
+      - gogs_ssh:/data/ssh/
+      - ${VOLUME_PATH}gogs:/data
+    labels:
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
+    networks:
+      - core
+
+  # Build server
+  drone-server:
+    container_name: drone-server
+    image: drone/drone:0.8.6
+    restart: always
+    volumes:
+      - ${VOLUME_PATH}drone:/var/lib/drone/
+    labels:
+      - traefik.port=8000
+      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
+      - traefik.frontend.passHostHeader=false # Fix for webhook
+    environment:
+      - DRONE_HOST=http://drone-server:9000
+      - DRONE_GOGS=true
+      - DRONE_GOGS_URL=http://gogs:3000
+      - DRONE_GOGS_PRIVATE_MODE=true
+      - GOGS_PRIVATE_MODE=true
+      - DRONE_GOGS_SKIP_VERIFY=true
+      - DRONE_OPEN=false
+      - DRONE_NETWORK=core
+      - DRONE_ADMIN=${DRONE_ADMIN}
+    networks:
+      - core
+      
+  #Build agent
+  drone-agent:
+    container_name: drone-agent
+    image: drone/agent:0.8.6
+    command: agent
+    restart: always
+    depends_on: [ drone-server  ]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=drone-server:9000
+      - DRONE_NETWORK=core
+    labels:      
+      - traefik.enable=false
+    networks:
+      - core
+
+  # Auto update docker container to newest image
+  watchtower:
+    container_name: watchtower
+    image: v2tec/watchtower
+    restart: always
+    labels:
+      - traefik.enable=false
+    command: --interval 20
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_CONFIG}:/config.json
+    networks:
+      - core
+
+
+  # ============= Example Apps =============
+
+  # A document database
+  rethinkdb:
+    container_name: rethinkdb
+    image: rethinkdb
+    ports:
+      - 28015:28015
+    restart: always
+    command: rethinkdb --bind all
+    labels:
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:rethinkdb.${SERVER_DOMAIN}
+    volumes:
+      - ${VOLUME_PATH}rethinkdb:/data
+    networks:
+      - core
+
+volumes:
+  gogs_ssh:
+
+# Create a network called "core" before running "docker-compose up"
+networks:
+  core:
+    # external: true
+
+# Create a file called .env and add the follong information
+# SERVER_DOMAIN=<your domain>
+# VOLUME_PATH=<path where you want to store volumes>
+# DRONE_ADMIN=<usernames of drone admins>
+# DOCKER_CONFIG=<path to docker config.json file>
+
