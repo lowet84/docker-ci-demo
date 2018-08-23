@@ -35,19 +35,6 @@ services:
     networks:
       - core
 
-  # Simple web portal to whow links to services on the site
-  portal:
-    container_name: portal
-    image: lowet84/traefik-portal
-    restart: always
-    labels:
-      - traefik.port=3000
-      - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
-    environment:
-      - TRAEFIK=http://traefik:8080
-    networks:
-      - core
-
   # Repository manager (used for Docker registry)
   nexus:
     container_name: nexus
@@ -132,32 +119,13 @@ services:
     networks:
       - core
 
-
-  # ============= Example Apps =============
-
-  # A document database
-  rethinkdb:
-    container_name: rethinkdb
-    image: rethinkdb
-    ports:
-      - 28015:28015
-    restart: always
-    command: rethinkdb --bind all
-    labels:
-      - traefik.port=8080
-      - traefik.frontend.rule=Host:rethinkdb.${SERVER_DOMAIN}
-    volumes:
-      - ${VOLUME_PATH}rethinkdb:/data
-    networks:
-      - core
-
 volumes:
   gogs_ssh:
 
 # Create a network called "core" before running "docker-compose up"
 networks:
   core:
-    # external: true
+    external: true
 
 # Create a file called .env and add the follong information
 # SERVER_DOMAIN=<your domain>
