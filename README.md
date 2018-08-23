@@ -7,9 +7,23 @@ Install docker
 
 Install docker-compose
 
+Set up a dns with wildcard subdomains that point to the public ip
+- Or
+sdflisjf
+
 ## Network
-Create a network
 ```
 docker create network core
 ```
 
+## Start containers
+```
+docker-compose up -d
+```
+
+# Applications
+## Portainer
+Portainer is a management gui for docker. 
+```
+the gui is available at portainer.<domain>
+```
