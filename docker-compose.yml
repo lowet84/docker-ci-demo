@@ -31,7 +31,7 @@ services:
       - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
     command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
     volumes:
-      - ${SETTINGS_PATH}/traefik:/config
+      - traefik:/config
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - core
@@ -59,7 +59,7 @@ services:
     restart: always
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - ${SETTINGS_PATH}/portainer:/data
+     - portainer:/data
     command: --no-auth
     labels:
       - traefik.port=9000
@@ -73,7 +73,7 @@ services:
     image: sonatype/nexus3
     restart: always
     volumes:
-      - ${SETTINGS_PATH}/nexus:/nexus-data:rw
+      - nexus:/nexus-data:rw
     labels:
       - traefik.enable=true
       - traefik.nexus.port=8081
@@ -90,7 +90,7 @@ services:
     restart: always
     volumes:
       - gogs_ssh:/data/ssh/
-      - ${SETTINGS_PATH}/gogs:/data
+      - gogs:/data
     labels:
       - traefik.enable=true
       - traefik.port=3000
@@ -104,7 +104,7 @@ services:
     image: drone/drone:0.8.6
     restart: always
     volumes:
-      - ${SETTINGS_PATH}/drone:/var/lib/drone/
+      - drone:/var/lib/drone/
     labels:
       - traefik.enable=true
       - traefik.port=8000
@@ -156,6 +156,11 @@ services:
 
 volumes:
   gogs_ssh:
+  drone:
+  gogs:
+  nexus:
+  portainer:
+  traefik:
 
 # Create a network called "core" before running "docker-compose up"
 networks:

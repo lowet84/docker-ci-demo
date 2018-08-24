@@ -1,0 +1,16 @@
+version: '3'
+services:
+  demoapp:
+    container_name: demoapp
+    image: drone.<your domain>/demoapp
+    restart: always
+     networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.port=9000
+      - traefik.frontend.rule=Host:demoapp.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
