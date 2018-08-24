@@ -77,7 +77,8 @@ docker-compose up -d
 ## Configure gogs
 Go to (https://gogs.(domain)).  
 Select Sqlite3 as database  
-Enter gogs.(domain) as domain  
+Enter "gogs.(domain)" as domain  
+Set Application URL to: "https://gogs.(domain)"
 
 Register a new user.
 
