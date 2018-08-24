@@ -52,10 +52,6 @@ gogs.<domain>
 docker create network core
 ```
 
-## Start containers
-```
-docker-compose up -d
-```
 # .env file
 Copy template.env to a new file called .env
 
@@ -80,4 +76,9 @@ Edit the following properties in .env
 Portainer is a management gui for docker. 
 ```
 the gui is available at portainer.<domain>
+```
+
+## Start containers
+```
+docker-compose up -d
 ```
