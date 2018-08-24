@@ -121,3 +121,7 @@ Add all files
   
 Go to drone and enable repo  
 Under secrets add docker_username and docker_secret  
+
+# Watchtower
+Wtachtower watches for changes to the docker image on the registry and pulls and upgrades if a newer image exists.
+Change WATCHTOWER_TARGETS in .env file and add names of containers you want to upgrade automatically.
