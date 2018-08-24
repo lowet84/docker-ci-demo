@@ -89,6 +89,9 @@ docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGIST
 docker-compose restart gogs
 ```
 
+## Add demoapp to gogs repo.
+
+
 ## Configure Nexus
 
 Go to (https://nexus.(domain)).  
