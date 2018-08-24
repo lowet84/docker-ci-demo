@@ -59,7 +59,7 @@ docker-compose up -d
 # .env file
 Copy template.env to a new file called .env
 
-# Oauth
+# Oauth2
 Set up google oauth by following the instuctions from:
 [https://github.com/bitly/oauth2_proxy#google-auth-provider](https://github.com/bitly/oauth2_proxy#google-auth-provider)
 Note! Set the Authorized redirect URIs to https://portal.<domain>/oauth2/callback
