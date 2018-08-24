@@ -62,6 +62,7 @@ Copy template.env to a new file called .env
 # Oauth
 Set up google oauth by following the instuctions from:
 [https://github.com/bitly/oauth2_proxy#google-auth-provider](https://github.com/bitly/oauth2_proxy#google-auth-provider)
+Note! Set the Authorized redirect URIs to https://portal.<domain>/oauth2/callback
 Edit the following properties in .env
 - OAUTH2_PROXY_COOKIE_SECRET, random long string to serve as a secret for your cookie
 - OAUTH2_PROXY_COOKIE_DOMAIN, your root domain, <domain>
