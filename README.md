@@ -69,14 +69,12 @@ Edit the following properties in .env
 - DRONE_ADMIN=username in gogs for use in drone
 - DOCKER_CONFIG=/root/.docker/config.json
 
-## Start containers
+# Start containers
 ```
 docker-compose up -d
 ```
 
-# Applications
-## Portainer
-Portainer is a management gui for docker. 
-```
-the gui is available at portainer.<domain>
-```
+## Configure gogs
+Go to (https://gogs.(domain)).
+Select Sqlite3 as database
+Enter gogs.(domain) as domain
