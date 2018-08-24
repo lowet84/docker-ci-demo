@@ -115,9 +115,9 @@ Log in using your gogs account. (Make sure the account name is the same as you s
 
 
 # Demo app
-Copy app to some other folder
-Init new repo on gogs
-Add all files
-
-Go to drone and enable repo
-Under secrets add docker_username and docker_secret
+Copy app to some other folder  
+Init new repo on gogs  
+Add all files  
+  
+Go to drone and enable repo  
+Under secrets add docker_username and docker_secret  
