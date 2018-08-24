@@ -56,10 +56,17 @@ docker create network core
 ```
 docker-compose up -d
 ```
+# .env file
+Copy template.env to a new file called .env
+
 # Oauth
 Set up google oauth by following the instuctions from:
 [https://github.com/bitly/oauth2_proxy#google-auth-provider](https://github.com/bitly/oauth2_proxy#google-auth-provider)
-
+Edit the following properties in .env
+- OAUTH2_PROXY_COOKIE_SECRET, random long string to serve as a secret for your cookie
+- OAUTH2_PROXY_COOKIE_DOMAIN, your root domain, <domain>
+- OAUTH2_PROXY_CLIENT_ID, the Client ID from the instuctions above
+- OAUTH2_PROXY_CLIENT_SECRET, the Client Secret from the instuctions above
 
 # Applications
 ## Portainer
