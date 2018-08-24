@@ -65,7 +65,7 @@ Set up google oauth by following the instuctions from:
 Note! Set the Authorized redirect URIs to https://portal.<domain>/oauth2/callback
 Edit the following properties in .env
 - OAUTH2_PROXY_COOKIE_SECRET, random long string to serve as a secret for your cookie
-- OAUTH2_PROXY_COOKIE_DOMAIN, your root domain, <domain>
+- OAUTH2_PROXY_COOKIE_DOMAIN, your root domain
 - OAUTH2_PROXY_CLIENT_ID, the Client ID from the instuctions above
 - OAUTH2_PROXY_CLIENT_SECRET, the Client Secret from the instuctions above
 
