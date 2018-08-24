@@ -59,7 +59,7 @@ docker-compose up -d
 # .env file
 Copy template.env to a new file called .env
 
-# Oauth2
+## Oauth2
 Set up google oauth by following the instuctions from:
 [https://github.com/bitly/oauth2_proxy#google-auth-provider](https://github.com/bitly/oauth2_proxy#google-auth-provider)
 Note! Set the Authorized redirect URIs to https://portal.<domain>/oauth2/callback
@@ -68,6 +68,12 @@ Edit the following properties in .env
 - OAUTH2_PROXY_COOKIE_DOMAIN, your root domain
 - OAUTH2_PROXY_CLIENT_ID, the Client ID from the instuctions above
 - OAUTH2_PROXY_CLIENT_SECRET, the Client Secret from the instuctions above
+    
+## Other settings
+- SERVER_DOMAIN=your domain
+- SETTINGS_PATH=a path where you want to store all data
+- DRONE_ADMIN=username in gogs for use in drone
+- DOCKER_CONFIG=/root/.docker/config.json
 
 # Applications
 ## Portainer
