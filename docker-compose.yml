@@ -24,8 +24,8 @@ services:
     build: ./core-apps/traefik/
     restart: always
     ports:
-      - ${PORT80}:80
-      - ${PORT443}:443
+      - 80:80
+      - 443:443
     labels:
       - traefik.port=8080
       - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
