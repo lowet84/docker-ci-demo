@@ -92,3 +92,7 @@ docker-compose restart gogs
 ## Configure Nexus
 
 Go to (https://nexus.(domain)).  
+* Log in with default admin account: admin/admin123
+* Create a new user and make sure that the new user is admin.
+* Log out and log in with your user. 
+* Delete the admin account. (Or change the default password)
