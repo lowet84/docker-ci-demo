@@ -100,3 +100,8 @@ Go to (https://nexus.(domain)).
 * Go to Administration/Repository/Repositories and delete all repositories
 * Add new repository: docker(hosted)
 * Name it something useful (Docker) and enable http and set port to 9000
+
+Test that docker registry works by logging in from host
+```
+docker login docker.(domain)
+```
