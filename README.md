@@ -89,8 +89,6 @@ docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGIST
 docker-compose restart gogs
 ```
 
-If you dont want to use gogs, visit http://docs.drone.io/installation/ and check out other options.
-
 ## Configure Nexus
 
 Go to (https://nexus.(domain)).  
@@ -115,6 +113,7 @@ If this fails, go to https://docker.(domain) and try again afterwards. This forc
 Go to (https://drone.(domain)). 
 Log in using your gogs account. (Make sure the account name is the same as you set in DRONE_ADMIN in the .env file)
 
+If you dont want to use gogs, visit http://docs.drone.io/installation/ and check out other options. Edit the docker-compose files and replace the environment variables for other services (like GitHub).
 
 # Demo app
 Copy app to some other folder  
