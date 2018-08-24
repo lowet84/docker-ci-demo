@@ -9,14 +9,46 @@ services:
     container_name: traefik
     image: traefik:1.7-alpine
     restart: always
-    ports:
-      - 80:80
     labels:
       - traefik.port=8080
       - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
     command: --web --logLevel=DEBUG --docker 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core
+
+  ptraefik:
+    container_name: ptraefik
+    image: public-traefik
+    build: ./core-apps/traefik/
+    restart: always
+    ports:
+      - ${PORT80}:80
+      - ${PORT443}:443
+    labels:
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
+    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
+    volumes:
+      - ${SETTINGS_PATH}/traefik:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core
+
+  oauth2proxy:
+    container_name: oauth2proxy
+    image: oauth2proxy
+    build: ./core-apps/oauth2proxy/
+    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain="gmail.com"
+    labels:
+      - traefik.enable=false
+    environment:
+      - OAUTH2_PROXY_COOKIE_SECRET=${OAUTH2_PROXY_COOKIE_SECRET}
+      - OAUTH2_PROXY_COOKIE_DOMAIN=${OAUTH2_PROXY_COOKIE_DOMAIN}
+      - OAUTH2_PROXY_CLIENT_ID=${OAUTH2_PROXY_CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${OAUTH2_PROXY_CLIENT_SECRET}
+    restart: always
     networks:
       - core
 
@@ -27,7 +59,7 @@ services:
     restart: always
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - ${VOLUME_PATH}portainer:/data
+     - ${SETTINGS_PATH}/portainer:/data
     command: --no-auth
     labels:
       - traefik.port=9000
@@ -41,7 +73,7 @@ services:
     image: sonatype/nexus3
     restart: always
     volumes:
-      - ${VOLUME_PATH}nexus:/nexus-data:rw
+      - ${SETTINGS_PATH}/nexus:/nexus-data:rw
     labels:
       - traefik.nexus.port=8081
       - traefik.nexus.frontend.rule=Host:nexus.${SERVER_DOMAIN}
@@ -57,7 +89,7 @@ services:
     restart: always
     volumes:
       - gogs_ssh:/data/ssh/
-      - ${VOLUME_PATH}gogs:/data
+      - ${SETTINGS_PATH}/gogs:/data
     labels:
       - traefik.port=3000
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
@@ -70,7 +102,7 @@ services:
     image: drone/drone:0.8.6
     restart: always
     volumes:
-      - ${VOLUME_PATH}drone:/var/lib/drone/
+      - ${SETTINGS_PATH}/drone:/var/lib/drone/
     labels:
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
