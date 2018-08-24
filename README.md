@@ -107,3 +107,8 @@ docker login docker.(domain)
 ```
 
 If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
+
+## Configure Drone
+
+Go to (https://drone.(domain)). 
+Log in using your gogs account. (Make sure the account name is the same as you set in DRONE_ADMIN in the .env file)
