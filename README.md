@@ -59,7 +59,7 @@ docker-compose up -d
 # Oauth
 Set up google oauth by following the instuctions from:
 ```
-https://github.com/bitly/oauth2_proxy#google-auth-provider
+(https://github.com/bitly/oauth2_proxy#google-auth-provider)
 ```
 
 
