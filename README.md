@@ -78,3 +78,10 @@ docker-compose up -d
 Go to (https://gogs.(domain)).  
 Select Sqlite3 as database  
 Enter gogs.(domain) as domain  
+
+```
+docker-compose down
+```
+
+Edit (SETTINGS_PATH)/gogs/gogs/conf/app.ini and change:
+DISABLE_REGISTRATION => true
