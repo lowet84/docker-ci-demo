@@ -89,10 +89,14 @@ docker-compose down
 Edit (SETTINGS_PATH)/gogs/gogs/conf/app.ini and change:  
 DISABLE_REGISTRATION = true
 
+
+
+## Configure Nexus
+
+
 Start services again
 ```
 docker-compose up -d
 ```
 
-## Configure Nexus
 Go to (https://nexus.(domain)).  
