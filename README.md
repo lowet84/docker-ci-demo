@@ -37,15 +37,15 @@ sudo chmod +x /usr/local/bin/docker-compose
 Do one of the following:
 - Set up a dns with wildcard subdomains that point to the public ip
 - Set up the following subdomains: 
-```
-portainer.<domain>
-traefik.<domain>
-ptraefik.<domain>
-drone.<domain>
-docker.<domain>
-nexus.<domain>
-gogs.<domain>
-```
+
+- portainer.<domain>
+- traefik.<domain>
+- ptraefik.<domain>
+- drone.<domain>
+- docker.<domain>
+- nexus.<domain>
+- gogs.<domain>
+
 
 ## Network
 ```
