@@ -96,3 +96,4 @@ Go to (https://nexus.(domain)).
 * Create a new user and make sure that the new user is admin.
 * Log out and log in with your user. 
 * Delete the admin account. (Or change the default password)
+* Disable anonymous access
