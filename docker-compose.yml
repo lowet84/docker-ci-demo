@@ -75,6 +75,7 @@ services:
     volumes:
       - ${SETTINGS_PATH}/nexus:/nexus-data:rw
     labels:
+      - traefik.enable=true
       - traefik.nexus.port=8081
       - traefik.nexus.frontend.rule=Host:nexus.${SERVER_DOMAIN}
       - traefik.docker.port=9000
@@ -91,6 +92,7 @@ services:
       - gogs_ssh:/data/ssh/
       - ${SETTINGS_PATH}/gogs:/data
     labels:
+      - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
     networks:
