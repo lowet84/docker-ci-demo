@@ -97,3 +97,6 @@ Go to (https://nexus.(domain)).
 * Log out and log in with your user. 
 * Delete the admin account. (Or change the default password)
 * Disable anonymous access
+* Go to Administration/Repository/Repositories and delete all repositories
+* Add new repository: docker(hosted)
+* Name it something useful (Docker) and enable http and set port to 9000
