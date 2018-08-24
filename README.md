@@ -82,14 +82,11 @@ Set Application URL to: "https://gogs.(domain)"
 
 Register a new user.
 
+Disable registration and restart gogs
 ```
 docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGISTRATION\ \ \ =\ true/g' /data/gogs/conf/app.ini
+docker-compose restart gogs
 ```
-
-Edit (SETTINGS_PATH)/gogs/gogs/conf/app.ini and change:  
-DISABLE_REGISTRATION = true
-
-
 
 ## Configure Nexus
 
