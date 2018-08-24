@@ -43,6 +43,7 @@ Do one of the following:
     * docker.(domain)
     * nexus.(domain)
     * gogs.(domain)
+    * demoapp.(domain)
 
 
 ## Network
