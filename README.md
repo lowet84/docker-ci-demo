@@ -89,6 +89,8 @@ docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGIST
 docker-compose restart gogs
 ```
 
+If you dont want to use gogs, visit http://docs.drone.io/installation/ and check out other options.
+
 ## Configure Nexus
 
 Go to (https://nexus.(domain)).  
