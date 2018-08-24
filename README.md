@@ -5,7 +5,7 @@ You need a Linux computer/virtual machine that has a public ip and ports 80 and 
 
 Install docker
 
-###On ubuntu:
+### On ubuntu:
 ```
 sudo apt-get update
 
