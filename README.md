@@ -75,6 +75,6 @@ docker-compose up -d
 ```
 
 ## Configure gogs
-Go to (https://gogs.(domain)).
-Select Sqlite3 as database
-Enter gogs.(domain) as domain
+Go to (https://gogs.(domain)).  
+Select Sqlite3 as database  
+Enter gogs.(domain) as domain  
