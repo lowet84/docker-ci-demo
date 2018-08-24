@@ -4,8 +4,9 @@
 You need a Linux computer/virtual machine that has a public ip and ports 80 and 443 opened.
 
 Install docker
-```
+
 ###On ubuntu:
+```
 sudo apt-get update
 
 sudo apt-get install \
