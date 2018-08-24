@@ -79,6 +79,7 @@ Go to (https://gogs.(domain)).
 Select Sqlite3 as database  
 Enter "gogs.(domain)" as domain  
 Set Application URL to: "https://gogs.(domain)"
+Select Install
 
 Register a new user.
 
