@@ -105,3 +105,5 @@ Test that docker registry works by logging in from host
 ```
 docker login docker.(domain)
 ```
+
+If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
