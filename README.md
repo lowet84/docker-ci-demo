@@ -93,3 +93,6 @@ Start services again
 ```
 docker-compose up -d
 ```
+
+## Configure Nexus
+Go to (https://nexus.(domain)).  
