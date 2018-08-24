@@ -106,6 +106,7 @@ services:
     volumes:
       - ${SETTINGS_PATH}/drone:/var/lib/drone/
     labels:
+      - traefik.enable=true
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
       - traefik.frontend.passHostHeader=false # Fix for webhook

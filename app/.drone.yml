@@ -1,0 +1,10 @@
+pipeline:
+  master:
+    image: plugins/docker
+    repo: nexus:9000/demo
+    registry: nexus:9000
+    tags: latest
+    secrets: [ docker_username, docker_password ]
+    insecure: true
+    when:
+      branch: master
