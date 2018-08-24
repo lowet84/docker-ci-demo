@@ -1,7 +1,7 @@
 pipeline:
   docker:
     image: plugins/docker
-    repo: nexus:9000/demo
+    repo: nexus:9000/demoapp
     registry: nexus:9000
     tags: latest
     secrets: [ docker_username, docker_password ]
