@@ -85,6 +85,8 @@ Under "Server and Other Services Settings" check:
 * Disable self-registration
 * Enable require sign in to view pages
 
+Under Admin Account Settings, add your account.
+
 Select Install
 
 ## Configure Nexus
