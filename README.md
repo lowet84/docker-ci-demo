@@ -80,16 +80,12 @@ Go to (https://gogs.(domain)).
 Select Sqlite3 as database  
 Enter "gogs.(domain)" as domain  
 Set Application URL to: "http://gogs:3000"
+
+Under "Server and Other Services Settings" check:
+* Disable self-registration
+* Enable require sign in to view pages
+
 Select Install
-
-Register a new user.
-
-Disable registration and restart gogs
-```
-docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGISTRATION\ \ \ =\ true/g' /data/gogs/conf/app.ini
-docker exec -it gogs sed -i 's/REQUIRE_SIGNIN_VIEW\ \ \ \ =\ false/REQUIRE_SIGNIN_VIEW\ \ \ \ =\ true/g' /data/gogs/conf/app.ini
-docker-compose restart gogs
-```
 
 ## Configure Nexus
 
