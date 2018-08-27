@@ -154,6 +154,19 @@ services:
     networks:
       - core
 
+  # Portal gui
+  portal:
+    container_name: portal
+    image: lowet84/traefik-portal
+    restart: always
+    labels:
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
+    environment:
+      - TRAEFIK=http://traefik:8080
+    networks:
+      - core
+
 volumes:
   gogs_ssh:
   drone:
