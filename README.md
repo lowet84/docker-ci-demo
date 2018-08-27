@@ -87,6 +87,7 @@ Register a new user.
 Disable registration and restart gogs
 ```
 docker exec -it gogs sed -i 's/DISABLE_REGISTRATION\ \ \ =\ false/DISABLE_REGISTRATION\ \ \ =\ true/g' /data/gogs/conf/app.ini
+docker exec -it gogs sed -i 's/REQUIRE_SIGNIN_VIEW\ \ \ \ =\ false/REQUIRE_SIGNIN_VIEW\ \ \ \ =\ true/g' /data/gogs/conf/app.ini
 docker-compose restart gogs
 ```
 
