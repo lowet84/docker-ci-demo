@@ -95,6 +95,10 @@ services:
       - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
+      - traefik.frontend.passHostHeader=false
+    environment:
+      - ENABLE_REVERSE_PROXY_AUTHENTICATION = false 
+      - ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false
     networks:
       - core
 
