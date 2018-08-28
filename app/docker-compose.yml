@@ -10,6 +10,7 @@ services:
       - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:demoapp.<your domain>
+      - com.centurylinklabs.watchtower.enable=true
 
 networks:
   core:

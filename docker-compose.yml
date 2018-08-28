@@ -151,7 +151,7 @@ services:
     restart: always
     labels:
       - traefik.enable=false
-    command: --interval 20 ${WATCHTOWER_TARGETS}
+    command: --interval 20 --label-enable
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DOCKER_CONFIG}:/config.json
