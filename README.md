@@ -66,7 +66,6 @@ Edit the following properties in .env
     
 ## Other settings
 - SERVER_DOMAIN=your domain
-- SETTINGS_PATH=a path where you want to store all data
 - DRONE_ADMIN=username in gogs for use in drone
 - DOCKER_CONFIG=/root/.docker/config.json
 
