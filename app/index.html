@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>DemoApp</title>
+    <style>
+        .text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em;
+        }
+    </style>
+    <script>
+        let update = function () {
+            const Http = new XMLHttpRequest();
+            const url = '/data';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange = (e) => {
+                console.log()
+                document.getElementById("data").innerHTML = Http.responseText;
+            }
+        }
+        setInterval(function () {
+            update();
+        }, 1000);
+        update();
+    </script>
+</head>
+
+<body>
+    <div class="text">
+        <p id="data">loading...</p>
+    </div>
+</body>
+
+</html>
