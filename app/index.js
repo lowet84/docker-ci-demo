@@ -5,7 +5,7 @@ const port = 3000
 
 const requestHandler = (request, response) => {
   if(request.url==='/data'){
-    response.end('changed')
+    response.end('Some text')
   }
 
   var file =  fs.readFileSync('index.html', 'utf8');
