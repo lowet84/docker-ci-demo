@@ -113,11 +113,10 @@ services:
       - traefik.enable=true
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
-#      - traefik.frontend.passHostHeader=false # Fix for webhook
     environment:
-      - DRONE_HOST=http://drone-server:9000
+      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
       - DRONE_GOGS=true
-      - DRONE_GOGS_URL=http://gogs:3000
+      - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
       - DRONE_GOGS_PRIVATE_MODE=true
       - GOGS_PRIVATE_MODE=true
       - DRONE_GOGS_SKIP_VERIFY=true
@@ -138,7 +137,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DRONE_SERVER=drone-server:9000
-      - DRONE_NETWORK=core
     labels:      
       - traefik.enable=false
     networks:
