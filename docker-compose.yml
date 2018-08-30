@@ -102,69 +102,84 @@ services:
 #    networks:
 #      - core
 
+  # gitlab:
+  #   container_name: gitlab
+  #   image: gitlab/gitlab-ce:latest
+  #   restart: always
+  #   env_file: ./gitlab.env
+  #   volumes:
+  #     - gitlab:/home/git/data:Z
+  #   labels:
+  #     - traefik.enable=true
+  #     - traefik.nexus.port=80
+  #     - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
+  #     - traefik.docker.network=core
+  #   networks:
+  #     - core
+  #     - gitlab
+  
+  # redis:
+  #   restart: always
+  #   image: redis:latest
+  #   command:
+  #     - --loglevel warning
+  #   volumes:
+  #     - gitlab_redis:/var/lib/redis:Z
+  #   networks:
+  #     - gitlab
+
+  # postgresql:
+  #   restart: always
+  #   image: postgres:10.5
+  #   volumes:
+  #     - gitlab_postgres:/var/lib/postgresql:Z
+  #   environment:
+  #     - DB_USER=gitlab
+  #     - DB_PASS=password
+  #     - DB_NAME=gitlabhq_production
+  #     - DB_EXTENSION=pg_trgm
+  #   networks:
+  #     - gitlab
+
+  # # Build server
+  # drone-server:
+  #   container_name: drone-server
+  #   image: drone/drone:0.8.6
+  #   restart: always
+  #   volumes:
+  #     - drone:/var/lib/drone/
+  #   labels:
+  #     - traefik.enable=true
+  #     - traefik.port=8000
+  #     - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
+  #   environment:
+  #     - DRONE_HOST=https://drone.${SERVER_DOMAIN}
+  #     - DRONE_GOGS=true
+  #     - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
+  #     - DRONE_GOGS_PRIVATE_MODE=true
+  #     - GOGS_PRIVATE_MODE=true
+  #     - DRONE_GOGS_SKIP_VERIFY=true
+  #     - DRONE_OPEN=false
+  #     - DRONE_NETWORK=core
+  #     - DRONE_ADMIN=${DRONE_ADMIN}
+  #   networks:
+  #     - core
+
   gitlab:
     container_name: gitlab
     image: gitlab/gitlab-ce:latest
     restart: always
-    env_file: ./gitlab.env
     volumes:
-      - gitlab:/home/git/data:Z
+      - gitlab_config:/etc/gitlab:Z
+      - gitlab_logs:/var/log/gitlab:Z
+      - gitlab_data:/var/opt/gitlab:Z
     labels:
       - traefik.enable=true
-      - traefik.nexus.port=80
+      - traefik.port=80
       - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
-      - traefik.docker.network=core
     networks:
       - core
-      - gitlab
-  
-  redis:
-    restart: always
-    image: redis:latest
-    command:
-      - --loglevel warning
-    volumes:
-      - gitlab_redis:/var/lib/redis:Z
-    networks:
-      - gitlab
 
-  postgresql:
-    restart: always
-    image: postgres:10.5
-    volumes:
-      - gitlab_postgres:/var/lib/postgresql:Z
-    environment:
-      - DB_USER=gitlab
-      - DB_PASS=password
-      - DB_NAME=gitlabhq_production
-      - DB_EXTENSION=pg_trgm
-    networks:
-      - gitlab
-
-  # Build server
-  drone-server:
-    container_name: drone-server
-    image: drone/drone:0.8.6
-    restart: always
-    volumes:
-      - drone:/var/lib/drone/
-    labels:
-      - traefik.enable=true
-      - traefik.port=8000
-      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
-    environment:
-      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
-      - DRONE_GOGS=true
-      - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
-      - DRONE_GOGS_PRIVATE_MODE=true
-      - GOGS_PRIVATE_MODE=true
-      - DRONE_GOGS_SKIP_VERIFY=true
-      - DRONE_OPEN=false
-      - DRONE_NETWORK=core
-      - DRONE_ADMIN=${DRONE_ADMIN}
-    networks:
-      - core
-      
   #Build agent
   drone-agent:
     container_name: drone-agent
@@ -215,15 +230,15 @@ volumes:
   nexus:
   portainer:
   traefik:
-  gitlab:
-  gitlab_redis:
-  gitlab_postgres:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:
 
 # Create a network called "core" before running "docker-compose up"
 networks:
   core:
     external: true
-  gitlab:
+  # gitlab:
 
 # Create a file called .env and add the follong information
 # SERVER_DOMAIN=<your domain>
