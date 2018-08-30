@@ -104,45 +104,6 @@ services:
 #    networks:
 #      - core
 
-  # gitlab:
-  #   container_name: gitlab
-  #   image: gitlab/gitlab-ce:latest
-  #   restart: always
-  #   env_file: ./gitlab.env
-  #   volumes:
-  #     - gitlab:/home/git/data:Z
-  #   labels:
-  #     - traefik.enable=true
-  #     - traefik.nexus.port=80
-  #     - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
-  #     - traefik.docker.network=core
-  #   networks:
-  #     - core
-  #     - gitlab
-  
-  # redis:
-  #   restart: always
-  #   image: redis:latest
-  #   command:
-  #     - --loglevel warning
-  #   volumes:
-  #     - gitlab_redis:/var/lib/redis:Z
-  #   networks:
-  #     - gitlab
-
-  # postgresql:
-  #   restart: always
-  #   image: postgres:10.5
-  #   volumes:
-  #     - gitlab_postgres:/var/lib/postgresql:Z
-  #   environment:
-  #     - DB_USER=gitlab
-  #     - DB_PASS=password
-  #     - DB_NAME=gitlabhq_production
-  #     - DB_EXTENSION=pg_trgm
-  #   networks:
-  #     - gitlab
-
   # Build server
   drone-server:
     container_name: drone-server
@@ -167,6 +128,7 @@ services:
     networks:
       - core
 
+  # Git server
   gitlab:
     container_name: gitlab
     image: gitlab/gitlab-ce:latest
