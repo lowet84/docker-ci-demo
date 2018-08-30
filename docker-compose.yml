@@ -84,23 +84,62 @@ services:
       - core
 
   # Git repo
-  gogs:
-    container_name: gogs
-    image: gogs/gogs
+#  gogs:
+#    container_name: gogs
+#    image: gogs/gogs
+#    restart: always
+#    volumes:
+#      - gogs_ssh:/data/ssh/
+#      - gogs:/data
+#    labels:
+#      - traefik.enable=true
+#      - traefik.port=3000
+#      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
+#      - traefik.frontend.passHostHeader=false
+#    environment:
+#      - ENABLE_REVERSE_PROXY_AUTHENTICATION = false 
+#      - ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false
+#    networks:
+#      - core
+
+  gitlab:
+    container_name: gitlab
+    image: gitlab/gitlab-ce:latest
     restart: always
+    env_file: ./gitlab.env
     volumes:
-      - gogs_ssh:/data/ssh/
-      - gogs:/data
+      - gitlab:/home/git/data:Z
     labels:
       - traefik.enable=true
-      - traefik.port=3000
-      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
-      - traefik.frontend.passHostHeader=false
-    environment:
-      - ENABLE_REVERSE_PROXY_AUTHENTICATION = false 
-      - ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false
+      - traefik.nexus.port=80
+      - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
+      - traefik.docker.network=core
     networks:
       - core
+      - gitlab
+  
+  redis:
+    restart: always
+    image: redis:latest
+    command:
+      - --loglevel warning
+    volumes:
+      - gitlab_redis:/var/lib/redis:Z
+    networks:
+      - gitlab
+
+  postgresql:
+    restart: always
+    image: postgres:10.5
+    volumes:
+      - gitlab_postgres:/var/lib/postgresql:Z
+    environment:
+      - DB_USER=gitlab
+      - DB_PASS=password
+      - DB_NAME=gitlabhq_production
+      - DB_EXTENSION=pg_trgm
+    networks:
+      - gitlab
 
   # Build server
   drone-server:
@@ -176,11 +215,15 @@ volumes:
   nexus:
   portainer:
   traefik:
+  gitlab:
+  gitlab_redis:
+  gitlab_postgres:
 
 # Create a network called "core" before running "docker-compose up"
 networks:
   core:
     external: true
+  gitlab:
 
 # Create a file called .env and add the follong information
 # SERVER_DOMAIN=<your domain>
