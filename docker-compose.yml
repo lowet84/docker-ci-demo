@@ -141,29 +141,29 @@ services:
   #   networks:
   #     - gitlab
 
-  # # Build server
-  # drone-server:
-  #   container_name: drone-server
-  #   image: drone/drone:0.8.6
-  #   restart: always
-  #   volumes:
-  #     - drone:/var/lib/drone/
-  #   labels:
-  #     - traefik.enable=true
-  #     - traefik.port=8000
-  #     - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
-  #   environment:
-  #     - DRONE_HOST=https://drone.${SERVER_DOMAIN}
-  #     - DRONE_GOGS=true
-  #     - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
-  #     - DRONE_GOGS_PRIVATE_MODE=true
-  #     - GOGS_PRIVATE_MODE=true
-  #     - DRONE_GOGS_SKIP_VERIFY=true
-  #     - DRONE_OPEN=false
-  #     - DRONE_NETWORK=core
-  #     - DRONE_ADMIN=${DRONE_ADMIN}
-  #   networks:
-  #     - core
+  # Build server
+  drone-server:
+    container_name: drone-server
+    image: drone/drone:0.8.6
+    restart: always
+    volumes:
+      - drone:/var/lib/drone/
+    labels:
+      - traefik.enable=true
+      - traefik.port=8000
+      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
+    environment:
+      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
+      - DRONE_GOGS=true
+      - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
+      - DRONE_GOGS_PRIVATE_MODE=true
+      - GOGS_PRIVATE_MODE=true
+      - DRONE_GOGS_SKIP_VERIFY=true
+      - DRONE_OPEN=false
+      - DRONE_NETWORK=core
+      - DRONE_ADMIN=${DRONE_ADMIN}
+    networks:
+      - core
 
   gitlab:
     container_name: gitlab
