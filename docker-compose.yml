@@ -40,7 +40,7 @@ services:
     container_name: oauth2proxy
     image: oauth2proxy
     build: ./core-apps/oauth2proxy/
-    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --authenticated-emails-file=/auth/emails --provider=gitlab --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" --redeem-url="https://gitlab.${SERVER_DOMAIN}/oauth/token"  --validate-url="https://gitlab.${SERVER_DOMAIN}/api/v4/user"
+    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --authenticated-emails-file=/auth/emails --provider=gitlab --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" --redeem-url="https://gitlab.${SERVER_DOMAIN}/oauth/token"  --validate-url="https://gitlab.${SERVER_DOMAIN}/api/v4/user" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback"
     volumes:
       - oauth2proxy:/auth/
     labels:
