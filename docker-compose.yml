@@ -124,7 +124,6 @@ services:
       - DRONE_GITLAB_SKIP_VERIFY=true
       - DRONE_OPEN=true
       - DRONE_NETWORK=core
-#      - DRONE_ADMIN=${DRONE_ADMIN}
       - DRONE_GITLAB_CLIENT=${OAUTH2_PROXY_CLIENT_ID}
       - DRONE_GITLAB_SECRET=${OAUTH2_PROXY_CLIENT_SECRET}
       
@@ -144,6 +143,8 @@ services:
       - traefik.enable=true
       - traefik.port=80
       - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
+    environment:
+      - GITLAB_OMNIBUS_CONFIG="external_url 'https://gitlab.${SERVER_DOMAIN}'"
     networks:
       - core
 
