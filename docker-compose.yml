@@ -117,14 +117,17 @@ services:
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
     environment:
       - DRONE_HOST=https://drone.${SERVER_DOMAIN}
-      - DRONE_GOGS=true
-      - DRONE_GOGS_URL=https://gogs.${SERVER_DOMAIN}
-      - DRONE_GOGS_PRIVATE_MODE=true
-      - GOGS_PRIVATE_MODE=true
-      - DRONE_GOGS_SKIP_VERIFY=true
-      - DRONE_OPEN=false
+      - DRONE_GITLAB=true
+      - DRONE_GITLAB_URL=https://gitlab.${SERVER_DOMAIN}
+      - DRONE_GITLAB_PRIVATE_MODE=true
+      - GITLAB_PRIVATE_MODE=true
+      - DRONE_GITLAB_SKIP_VERIFY=true
+      - DRONE_OPEN=true
       - DRONE_NETWORK=core
-      - DRONE_ADMIN=${DRONE_ADMIN}
+#      - DRONE_ADMIN=${DRONE_ADMIN}
+      - DRONE_GITLAB_CLIENT=${OAUTH2_PROXY_CLIENT_ID}
+      - DRONE_GITLAB_SECRET=${OAUTH2_PROXY_CLIENT_SECRET}
+      
     networks:
       - core
 
