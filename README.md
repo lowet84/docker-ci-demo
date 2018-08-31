@@ -41,6 +41,7 @@ docker-compose up -d
 ```
 
 ## Configure GitLab
+Wait for gitlab to start. https://gitlab.(domain)  
 ```
 docker exec -it gitlab sh -c "echo external_url \'http://gitlab.(your domain)/\' > /etc/gitlab/gitlab.rb && gitlab-ctl reconfigure"
 ```
@@ -58,7 +59,7 @@ Secret => CLIENT_SECRET
 
 ## Configure Nexus
 
-Go to https://nexus.(domain).  
+Go to https://nexus.(domain)
 * Log in with default admin account: admin/admin123
 * Create a new user and make sure that the new user is admin.
 * Log out and log in with your user. 
