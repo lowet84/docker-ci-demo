@@ -33,8 +33,6 @@ Change SERVER_DOMAIN to your domain (without subdomain example.com)
 ## Add administrtors to oauth2_proxy
 ```
 docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "(admin email)" > /data/emails"
-docker rm -f oauth2proxy
-docker-compose up -d
 ```
 
 # Start containers
