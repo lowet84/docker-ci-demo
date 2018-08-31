@@ -22,7 +22,7 @@ Do one of the following:
 
 ## Network
 ```
-docker create network core
+docker network create core
 ```
 
 # .env file
