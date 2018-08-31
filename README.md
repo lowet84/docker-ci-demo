@@ -41,6 +41,10 @@ docker-compose up -d
 ```
 
 ## Configure GitLab
+```
+docker exec -it gitlab sh -c "echo external_url \'http://gitlab.(your domain)/\' > /etc/gitlab/gitlab.rb && gitlab-ctl reconfigure"
+```
+
 Edit .env file
 
 ## Configure Nexus
