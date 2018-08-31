@@ -42,7 +42,7 @@ Do one of the following:
     * drone.(domain)
     * docker.(domain)
     * nexus.(domain)
-    * gogs.(domain)
+    * gitlab.(domain)
     * demoapp.(domain)
 
 
@@ -54,39 +54,19 @@ docker create network core
 # .env file
 Copy template.env to a new file called .env
 
-## Oauth2
-Set up google oauth by following the instuctions from:
-[https://github.com/bitly/oauth2_proxy#google-auth-provider](https://github.com/bitly/oauth2_proxy#google-auth-provider)
-Note! Set the Authorized redirect URIs to https://portal.(domain)/oauth2/callback
-Edit the following properties in .env
-- OAUTH2_PROXY_COOKIE_SECRET, random long string to serve as a secret for your cookie
-- OAUTH2_PROXY_COOKIE_DOMAIN, your root domain
-- OAUTH2_PROXY_CLIENT_ID, the Client ID from the instuctions above
-- OAUTH2_PROXY_CLIENT_SECRET, the Client Secret from the instuctions above
-    
-## Other settings
-- SERVER_DOMAIN=your domain
-- DRONE_ADMIN=username in gogs for use in drone
-- DOCKER_CONFIG=/root/.docker/config.json
+Change SERVER_DOMAIN to your domain (without subdomain example.com)
 
 # Start containers
 ```
 docker-compose up -d
 ```
 
-## Configure gogs
-Go to (https://gogs.(domain)).  
-Select Sqlite3 as database  
-Enter "gogs.(domain)" as domain  
-Set Application URL to: "http://gogs:3000"
+## Configure GitLab
+Edit .env file
 
-Under "Server and Other Services Settings" check:
-* Disable self-registration
-* Enable require sign in to view pages
+## Add administrtors to oauth2_proxy
 
-Under Admin Account Settings, add your account.
 
-Select Install
 
 ## Configure Nexus
 
@@ -106,13 +86,6 @@ docker login docker.(domain)
 ```
 
 If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
-
-## Configure Drone
-
-Go to (https://drone.(domain)). 
-Log in using your gogs account. (Make sure the account name is the same as you set in DRONE_ADMIN in the .env file)
-
-If you dont want to use gogs, visit http://docs.drone.io/installation/ and check out other options. Edit the docker-compose files and replace the environment variables for other services (like GitHub).
 
 # Demo app
 Copy app to some other folder  
