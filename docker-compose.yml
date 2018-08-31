@@ -46,10 +46,10 @@ services:
     labels:
       - traefik.enable=false
     environment:
-      - OAUTH2_PROXY_COOKIE_SECRET=${OAUTH2_PROXY_COOKIE_SECRET}
-      - OAUTH2_PROXY_COOKIE_DOMAIN=${OAUTH2_PROXY_COOKIE_DOMAIN}
-      - OAUTH2_PROXY_CLIENT_ID=${OAUTH2_PROXY_CLIENT_ID}
-      - OAUTH2_PROXY_CLIENT_SECRET=${OAUTH2_PROXY_CLIENT_SECRET}
+      - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
+      - OAUTH2_PROXY_COOKIE_DOMAIN=${SERVER_DOMAIN}
+      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
     restart: always
     networks:
       - core
@@ -105,8 +105,8 @@ services:
       - DRONE_GITLAB_SKIP_VERIFY=true
       - DRONE_OPEN=true
       - DRONE_NETWORK=core
-      - DRONE_GITLAB_CLIENT=${OAUTH2_PROXY_CLIENT_ID}
-      - DRONE_GITLAB_SECRET=${OAUTH2_PROXY_CLIENT_SECRET}
+      - DRONE_GITLAB_CLIENT=${CLIENT_ID}
+      - DRONE_GITLAB_SECRET=${CLIENT_SECRET}
       
     networks:
       - core
@@ -125,7 +125,8 @@ services:
       - traefik.port=80
       - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
     environment:
-      - GITLAB_OMNIBUS_CONFIG=external_url 'http://gitlab.${SERVER_DOMAIN}';
+      - GITLAB_HOST=https://gitlab.${SERVER_DOMAIN}
+      #- GITLAB_OMNIBUS_CONFIG=external_url 'http//gitlab.${SERVER_DOMAIN}/';
     networks:
       - core
 
