@@ -84,6 +84,11 @@ docker login docker.(domain)
 If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
 
 # Demo app
+Start demoapp
+```
+curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | SERVER_DOMAIN=(your domain) docker-compose -f - up -d
+```
+
 Copy app to some other folder  
 Init new repo on gogs  
 Add all files  
