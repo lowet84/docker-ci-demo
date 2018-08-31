@@ -45,7 +45,16 @@ docker-compose up -d
 docker exec -it gitlab sh -c "echo external_url \'http://gitlab.(your domain)/\' > /etc/gitlab/gitlab.rb && gitlab-ctl reconfigure"
 ```
 
+### Add application
+* Select trusted
+* Select all scopes
+* Add callbacks
+* https://portal.(your domain)/oauth2/callback
+* https://drone.(your domain)/authorize
+
 Edit .env file
+Application Id => CLIENT_ID
+Secret => CLIENT_SECRET
 
 ## Configure Nexus
 
