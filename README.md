@@ -68,9 +68,9 @@ If this fails, go to https://docker.(domain) and try again afterwards. This forc
 Copy app to some other folder  
 Init new repo on gogs  
 Add all files  
-  
-Go to drone and enable repo  
-Under secrets add docker_username and docker_secret  
+
+# Enable repo in drone
+* Under secrets add docker_username and docker_secret  
 
 # Watchtower
 Watchtower watches for changes to the docker image on the registry and pulls and upgrades if a newer image exists.
