@@ -59,6 +59,11 @@ Edit .env file
 Application Id => CLIENT_ID
 Secret => CLIENT_SECRET
 
+Restart containers affeced by CLIENT_ID & CLIENT_SECRET:
+```
+docker-compose up -d
+```
+
 ## Configure Nexus
 
 Go to https://nexus.(domain)
