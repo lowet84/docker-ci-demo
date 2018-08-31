@@ -65,8 +65,11 @@ docker-compose up -d
 Edit .env file
 
 ## Add administrtors to oauth2_proxy
-
-
+```
+docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "(admin email)" > /data/emails"
+docker rm -f oauth2proxy
+docker-compose up -d
+```
 
 ## Configure Nexus
 
