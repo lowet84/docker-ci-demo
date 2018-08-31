@@ -3,8 +3,8 @@
 ## Prerequisites:
 You will nedd the following
 * A Linux computer/virtual machine that has a public ip and ports 80 and 443 opened.
-* Docker
-* docker-compose
+* Docker https://docs.docker.com/install/
+* docker-compose https://docs.docker.com/compose/install/
 
 ### DNS
 Do one of the following:
@@ -47,7 +47,7 @@ docker-compose up -d
 
 ## Configure Nexus
 
-Go to (https://nexus.(domain)).  
+Go to https://nexus.(domain).  
 * Log in with default admin account: admin/admin123
 * Create a new user and make sure that the new user is admin.
 * Log out and log in with your user. 
