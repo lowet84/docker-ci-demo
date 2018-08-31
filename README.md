@@ -46,6 +46,8 @@ Wait for gitlab to start. https://gitlab.(domain)
 docker exec -it gitlab sh -c "echo external_url \'http://gitlab.(your domain)/\' > /etc/gitlab/gitlab.rb && gitlab-ctl reconfigure"
 ```
 
+Cnahge password and login (as root)
+
 ### Add application
 * Select trusted
 * Select all scopes
