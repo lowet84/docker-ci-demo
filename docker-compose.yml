@@ -126,7 +126,6 @@ services:
       - traefik.frontend.rule=Host:gitlab.${SERVER_DOMAIN}
     environment:
       - GITLAB_HOST=https://gitlab.${SERVER_DOMAIN}
-      #- GITLAB_OMNIBUS_CONFIG=external_url 'http//gitlab.${SERVER_DOMAIN}/';
     networks:
       - core
 
