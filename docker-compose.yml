@@ -85,25 +85,6 @@ services:
     networks:
       - core
 
-  # Git repo
-#  gogs:
-#    container_name: gogs
-#    image: gogs/gogs
-#    restart: always
-#    volumes:
-#      - gogs_ssh:/data/ssh/
-#      - gogs:/data
-#    labels:
-#      - traefik.enable=true
-#      - traefik.port=3000
-#      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
-#      - traefik.frontend.passHostHeader=false
-#    environment:
-#      - ENABLE_REVERSE_PROXY_AUTHENTICATION = false 
-#      - ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false
-#    networks:
-#      - core
-
   # Build server
   drone-server:
     container_name: drone-server
