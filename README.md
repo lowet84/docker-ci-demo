@@ -84,17 +84,17 @@ docker login docker.(domain)
 If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
 
 # Demo app
-Start demoapp
-```
-curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | SERVER_DOMAIN=(your domain) docker-compose -f - up -d
-```
-
 Copy app to some other folder  
 Init new repo on gogs  
 Add all files  
 
 # Enable repo in drone
 * Under secrets add docker_username and docker_secret  
+
+Start demoapp
+```
+curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | SERVER_DOMAIN=(your domain) docker-compose -f - up -d
+```
 
 # Watchtower
 Watchtower watches for changes to the docker image on the registry and pulls and upgrades if a newer image exists.
