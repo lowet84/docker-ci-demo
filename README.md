@@ -15,7 +15,6 @@ Do one of the following:
     * ptraefik.(domain)
     * drone.(domain)
     * docker.(domain)
-    * nexus.(domain)
     * gitlab.(domain)
     * demoapp.(domain)
 
