@@ -43,7 +43,7 @@ docker-compose up -d
 ## Configure GitLab
 Wait for gitlab to start. https://gitlab.(domain)  
 ```
-docker exec -it gitlab bash -c "printf \"external_url \'http://gitlab.(your domain)/\'\\nregistry_external_url \'https://gitlab.(your domain):9000\'\" > /etc/gitlab/gitlab.rb" && gitlab-ctl reconfigure"
+docker exec -it gitlab bash -c "printf \"external_url \'http://gitlab.(your domain)/\'\\nregistry_external_url \'https://gitlab.(your domain):9000\'\" > /etc/gitlab/gitlab.rb && gitlab-ctl reconfigure"
 ```
 
 Cnahge password and login (as root)
