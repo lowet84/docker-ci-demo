@@ -43,7 +43,13 @@ docker-compose up -d
 ## Configure GitLab
 Wait for gitlab to start. https://gitlab.(domain)  
 
-Cnahge password and login (as root)
+Test that docker registry works by logging in from host
+```
+docker login docker.(domain)
+```
+If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
+
+Change password and login (as root)
 
 ### Add application
 * Select trusted
@@ -60,25 +66,6 @@ Restart containers affeced by CLIENT_ID & CLIENT_SECRET:
 ```
 docker-compose up -d
 ```
-
-## Configure Nexus
-
-Go to https://nexus.(domain)
-* Log in with default admin account: admin/admin123
-* Create a new user and make sure that the new user is admin.
-* Log out and log in with your user. 
-* Delete the admin account. (Or change the default password)
-* Disable anonymous access
-* Go to Administration/Repository/Repositories and delete all repositories
-* Add new repository: docker(hosted)
-* Name it something useful (Docker) and enable http and set port to 9000
-
-Test that docker registry works by logging in from host
-```
-docker login docker.(domain)
-```
-
-If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
 
 # Demo app
 Copy app to some other folder  
