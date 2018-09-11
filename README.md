@@ -66,9 +66,9 @@ If this fails, go to https://docker.(domain) and try again afterwards. This forc
 * https://portal.(your domain)/oauth2/callback
 * https://drone.(your domain)/authorize
 
-Edit .env file
-Application Id => CLIENT_ID
-Secret => CLIENT_SECRET
+Edit .env file  
+Application Id => CLIENT_ID  
+Secret => CLIENT_SECRET  
 
 Restart containers affeced by CLIENT_ID & CLIENT_SECRET:
 ```
