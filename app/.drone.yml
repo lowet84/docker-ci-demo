@@ -1,8 +1,8 @@
 pipeline:
   docker:
     image: plugins/docker
-    repo: nexus:9000/demoapp
-    registry: nexus:9000
+    repo: docker.(your domain)/demoapp
+    registry: docker.(your domain)
     tags: latest
     secrets: [ docker_username, docker_password ]
     insecure: true
