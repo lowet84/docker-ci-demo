@@ -25,9 +25,9 @@ docker network create core
 ```
 
 # .env file
-Copy template.env to a new file called .env
+Copy *template.env* to a new file called *.env*
 
-Change SERVER_DOMAIN to your domain (without subdomain, **example.com** ~~gitlab.example.com~~)
+Edit *.env* and change SERVER_DOMAIN to your domain (without subdomain, **example.com** ~~gitlab.example.com~~)
 
 ## Add administrators to oauth2_proxy
 ```
