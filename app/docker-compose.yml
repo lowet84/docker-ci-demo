@@ -2,7 +2,7 @@ version: '3'
 services:
   demoapp:
     container_name: demoapp
-    image: docker.${SERVER_DOMAIN}/demoapp
+    image: docker.${SERVER_DOMAIN}/root/demoapp
     restart: always
     networks:
       - core
