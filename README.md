@@ -79,10 +79,20 @@ docker-compose up -d
 * Go to gitlab and create a new project called *demoapp*  
 * Add a readme to the project so that it can be cloned.  
 
-# Enable repo in drone
+## Enable repo in drone
 * Under secrets add docker_username and docker_secret  
 
-Start demoapp
+## Clone the app
+
+## Copy the files
+
+## Edit *.drone.yml*
+
+## Push
+
+Check the build in drone.
+
+## Start demoapp
 ```
 curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | DOMAIN=(your domain) REPO=(root/demoapp) docker-compose -f - up -d
 ```
