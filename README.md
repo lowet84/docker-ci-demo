@@ -36,6 +36,7 @@ docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "(admin
 
 # Start containers
 ```
+docker-compose up -d traefik presentation
 docker-compose up -d
 ```
 
