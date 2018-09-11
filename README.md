@@ -25,6 +25,7 @@ Do one of the following:
 Clone this repo to your machine and go to the *docker-ci-demo* folder.
 
 ## Network
+Create the network that is used by all apps.
 ```
 docker network create core
 ```
