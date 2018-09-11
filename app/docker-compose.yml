@@ -2,14 +2,14 @@ version: '3'
 services:
   demoapp:
     container_name: demoapp
-    image: docker.${SERVER_DOMAIN}/root/demoapp
+    image: docker.${DOMAIN}/${REPO}
     restart: always
     networks:
       - core
     labels:
       - traefik.enable=true
       - traefik.port=3000
-      - traefik.frontend.rule=Host:demoapp.${SERVER_DOMAIN}
+      - traefik.frontend.rule=Host:demoapp.${DOMAIN}
       - com.centurylinklabs.watchtower.enable=true
 
 networks:
