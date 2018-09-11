@@ -167,6 +167,16 @@ services:
     networks:
       - core
 
+  reveal:
+    container_name: presentation
+    image: lowet84/docker-ci-presentation
+    restart: always
+    labels:
+      - traefik.port=8000
+      - traefik.frontend.rule=Host:reveal.${SERVER_DOMAIN}
+    networks:
+      - core
+
 volumes:
   gogs_ssh:
   drone:
