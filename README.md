@@ -22,7 +22,7 @@ Do one of the following:
     * portal.(domain)
 
 ## Clone repo
-Clone this repo to your machine and go to the *docker-ci-demo* folder.
+* Clone this repo to your machine and go to the *docker-ci-demo* folder.
 
 ## Network
 Create the network that is used by all apps.
@@ -31,9 +31,9 @@ docker network create core
 ```
 
 # .env file
-Copy *template.env* to a new file called *.env*
+* Copy *template.env* to a new file called *.env*
 
-Edit *.env* and change SERVER_DOMAIN to your domain (without subdomain, **example.com** ~~gitlab.example.com~~)
+* Edit *.env* and change SERVER_DOMAIN to your domain (without subdomain, **example.com** ~~gitlab.example.com~~)
 
 ## Add administrators to oauth2_proxy
 ```
@@ -49,9 +49,9 @@ docker-compose up -d
 ## Configure GitLab
 Wait for gitlab to start. https://gitlab.(domain)  
 
-Change password and login (as root)
+* Change password and login (as root)
 
-Edit your user and set the same email that was added to oauth2proxy
+* Edit your user and set the same email that was added to oauth2proxy
 
 Test that docker registry works by logging in from host
 ```
@@ -76,8 +76,8 @@ docker-compose up -d
 ```
 
 # Demo app
-Go to gitlab and create a new project called *demoapp*  
-Add a readme to the project so that it can be cloned.  
+* Go to gitlab and create a new project called *demoapp*  
+* Add a readme to the project so that it can be cloned.  
 
 # Enable repo in drone
 * Under secrets add docker_username and docker_secret  
