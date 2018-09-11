@@ -5,6 +5,5 @@ pipeline:
     registry: docker.(your domain)
     tags: latest
     secrets: [ docker_username, docker_password ]
-    insecure: true
     when:
       branch: master
