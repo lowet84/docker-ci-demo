@@ -101,4 +101,4 @@ curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-
 Watchtower watches for changes to the docker image on the registry and pulls and upgrades if a newer image exists.
 Set the label: com.centurylinklabs.watchtower.enable=true on all containers that should be updated automatically.
 
-## Edit and push to check that the continuous delivery is working.
+* Edit and push to check that the continuous delivery is working.
