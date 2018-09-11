@@ -45,6 +45,8 @@ Wait for gitlab to start. https://gitlab.(domain)
 
 Change password and login (as root)
 
+Edit your user and set the same email that was added to oauth2proxy
+
 Test that docker registry works by logging in from host
 ```
 docker login docker.(domain)
