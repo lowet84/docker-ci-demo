@@ -70,15 +70,14 @@ Edit .env file
 Application Id => CLIENT_ID  
 Secret => CLIENT_SECRET  
 
-Restart containers affeced by CLIENT_ID & CLIENT_SECRET:
+Refresh affected contatiners by running:
 ```
 docker-compose up -d
 ```
 
 # Demo app
-Copy app to some other folder  
-Init new repo on gogs  
-Add all files  
+Go to gitlab and create a new project called *demoapp*
+Add a readme to the project so that it can be cloned.
 
 # Enable repo in drone
 * Under secrets add docker_username and docker_secret  
