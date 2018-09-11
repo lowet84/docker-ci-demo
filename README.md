@@ -76,8 +76,8 @@ docker-compose up -d
 ```
 
 # Demo app
-Go to gitlab and create a new project called *demoapp*
-Add a readme to the project so that it can be cloned.
+Go to gitlab and create a new project called *demoapp*  
+Add a readme to the project so that it can be cloned.  
 
 # Enable repo in drone
 * Under secrets add docker_username and docker_secret  
