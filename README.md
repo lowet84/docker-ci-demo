@@ -29,7 +29,7 @@ Copy template.env to a new file called .env
 
 Change SERVER_DOMAIN to your domain (without subdomain example.com)
 
-## Add administrtors to oauth2_proxy
+## Add administrators to oauth2_proxy
 ```
 docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "(admin email)" > /data/emails"
 ```
@@ -76,7 +76,7 @@ Add all files
 
 Start demoapp
 ```
-curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | SERVER_DOMAIN=(your domain) docker-compose -f - up -d
+curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | DOMAIN=(your domain) REPO=(root/demoapp) docker-compose -f - up -d
 ```
 
 # Watchtower
