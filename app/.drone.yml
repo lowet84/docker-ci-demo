@@ -1,7 +1,7 @@
 pipeline:
   docker:
     image: plugins/docker
-    repo: https://docker.(your domain)/demoapp
+    repo: https://docker.(your domain)/root/demoapp
     registry: docker.(your domain)
     tags: latest
     secrets: [ docker_username, docker_password ]
