@@ -18,6 +18,8 @@ Do one of the following:
     * gitlab.(domain)
     * demoapp.(domain)
 
+## Clone repo
+Clone this repo to your machine and go to the *docker-ci-demo* folder.
 
 ## Network
 ```
