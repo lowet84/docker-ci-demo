@@ -160,7 +160,6 @@ services:
     image: lowet84/traefik-portal
     restart: always
     labels:
-      - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
     environment:
@@ -172,7 +171,6 @@ volumes:
   gogs_ssh:
   drone:
   gogs:
-  nexus:
   portainer:
   traefik:
   oauth2proxy:
