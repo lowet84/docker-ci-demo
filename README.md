@@ -9,6 +9,7 @@ You will nedd the following
 ### DNS
 Do one of the following:
 * Set up a dns with wildcard subdomains that point to the public ip
+* **OR**
 * Set up the following subdomains: (CNAME to root domain)
     * portainer.(domain)
     * traefik.(domain)
