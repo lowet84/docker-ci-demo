@@ -167,13 +167,14 @@ services:
     networks:
       - core
 
-  reveal:
+  presentation:
     container_name: presentation
     image: lowet84/docker-ci-presentation
     restart: always
     labels:
+      - traefik.enable=true
       - traefik.port=8000
-      - traefik.frontend.rule=Host:reveal.${SERVER_DOMAIN}
+      - traefik.frontend.rule=Host:presentation.${SERVER_DOMAIN}
     networks:
       - core
 
