@@ -9,7 +9,7 @@ You will nedd the following
 ### DNS
 Do one of the following:
 * Set up a dns with wildcard subdomains that point to the public ip
-* Set up the following subdomains: 
+* Set up the following subdomains: (CNAME to root domain)
     * portainer.(domain)
     * traefik.(domain)
     * ptraefik.(domain)
@@ -17,6 +17,8 @@ Do one of the following:
     * docker.(domain)
     * gitlab.(domain)
     * demoapp.(domain)
+    * presentation.(domain)
+    * portal.(domain)
 
 ## Clone repo
 Clone this repo to your machine and go to the *docker-ci-demo* folder.
