@@ -34,6 +34,7 @@ docker network create core
 Add your domain to the .env settings file:
 ```
 echo SERVER_DOMAIN=fredriklowenhamn.com > .env
+(replace fredriklowenhamn.com with your domain)
 ```
 
 ## Add administrators to oauth2_proxy
