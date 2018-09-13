@@ -69,7 +69,7 @@ If this fails, go to https://docker.fredriklowenhamn.com and try again afterward
 
 Edit .env file  
 ```
-echo COOKIE_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+echo COOKIE_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)  >> .env  
 echo CLIENT_ID=(Application Id) >> .env  
 echo CLIENT_SECRET=(Application Secret) >> .env 
 ```
