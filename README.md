@@ -33,7 +33,7 @@ docker network create core
 # .env file
 Add your domain to the .env settings file:
 ```
-echo fredriklowenhamn.com > .env
+echo SERVER_DOMAIN=fredriklowenhamn.com > .env
 ```
 
 ## Add administrators to oauth2_proxy
@@ -68,8 +68,9 @@ If this fails, go to https://docker.fredriklowenhamn.com and try again afterward
 * https://drone.fredriklowenhamn.com/authorize
 
 Edit .env file  
-Application Id => CLIENT_ID  
-Secret => CLIENT_SECRET  
+echo COOKIE_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+echo CLIENT_ID=(Application Id) >> .env  
+echo CLIENT_SECRET=(Application Secret) >> .env 
 
 Refresh affected contatiners by running:
 ```
