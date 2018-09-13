@@ -68,9 +68,11 @@ If this fails, go to https://docker.fredriklowenhamn.com and try again afterward
 * https://drone.fredriklowenhamn.com/authorize
 
 Edit .env file  
+```
 echo COOKIE_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 echo CLIENT_ID=(Application Id) >> .env  
 echo CLIENT_SECRET=(Application Secret) >> .env 
+```
 
 Refresh affected contatiners by running:
 ```
