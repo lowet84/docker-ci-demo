@@ -31,13 +31,14 @@ docker network create core
 ```
 
 # .env file
-* Copy *template.env* to a new file called *.env*
-
-* Edit *.env* and change SERVER_DOMAIN to your domain (without subdomain, **example.com** ~~gitlab.example.com~~)
+Add your domain to the .env settings file:
+```
+echo fredriklowenhamn.com > .env
+```
 
 ## Add administrators to oauth2_proxy
 ```
-docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "(admin email)" > /data/emails"
+docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "fredrik.lowenhamn@gmail.com" > /data/emails"
 ```
 
 # Start containers
@@ -47,7 +48,7 @@ docker-compose up -d
 ```
 
 ## Configure GitLab
-Wait for gitlab to start. https://gitlab.(domain)  
+Wait for gitlab to start. https://gitlab.fredriklowenhamn.com  
 
 * Change password and login (as root)
 
@@ -55,16 +56,16 @@ Wait for gitlab to start. https://gitlab.(domain)
 
 Test that docker registry works by logging in from host
 ```
-docker login docker.(domain)
+docker login docker.fredriklowenhamn.com
 ```
-If this fails, go to https://docker.(domain) and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
+If this fails, go to https://docker.fredriklowenhamn.com and try again afterwards. This forces traefik to get ssl certificate from letsencrypt.
 
 ### Add application
 * Select trusted
 * Select all scopes
 * Add callbacks
-* https://portal.(your domain)/oauth2/callback
-* https://drone.(your domain)/authorize
+* https://portal.fredriklowenhamn.com/oauth2/callback
+* https://drone.fredriklowenhamn.com/authorize
 
 Edit .env file  
 Application Id => CLIENT_ID  
@@ -94,7 +95,7 @@ Check the build in drone.
 
 ## Start demoapp
 ```
-curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | DOMAIN=(your domain) REPO=(root/demoapp) docker-compose -f - up -d
+curl https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/app/docker-compose.yml | DOMAIN=fredriklowenhamn.com REPO=root/demoapp docker-compose -f - up -d
 ```
 
 # Watchtower
