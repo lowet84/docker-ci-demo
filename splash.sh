@@ -1,3 +1,3 @@
 #!/bin/bash
 clear
-cat splash.txt | cut -c1-200
+cat text_splash.txt | cut -c1-200
