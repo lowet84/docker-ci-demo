@@ -173,7 +173,7 @@ services:
     restart: always
     labels:
       - traefik.enable=true
-      - traefik.port=8000
+      - traefik.port=8043
       - traefik.frontend.rule=Host:presentation.${SERVER_DOMAIN}
     networks:
       - core
