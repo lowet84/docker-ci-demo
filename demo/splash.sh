@@ -1,3 +1,5 @@
 #!/bin/bash
 clear
-cat text_splash.txt | cut -c1-200
+TEXT=$(echo $0 | sed -En "s/splash.sh/text_splash.txt/p")
+cat $TEXT | cut -c1-200
+
