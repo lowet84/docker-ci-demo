@@ -25,8 +25,8 @@
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange = (e) => {
-                console.log()
-                document.getElementById("data").innerHTML = Http.responseText;
+                if(document.getElementById("data").innerHTML !== Http.responseText)
+                    document.getElementById("data").innerHTML = Http.responseText;
             }
         }
         setInterval(function () {
