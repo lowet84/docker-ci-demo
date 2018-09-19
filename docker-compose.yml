@@ -49,6 +49,24 @@ services:
     command: --no-auth
     networks:
       - core
+  
+  portainer_proxy:
+    container_name: portainer_proxy
+    image: lowet84/oauth2proxy
+    labels:
+      - traefik.enable=true
+      - traefik.port=4180
+      - traefik.frontend.rule=Host:portainer.${SERVER_DOMAIN}
+    environment:
+      - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
+      - OAUTH2_PROXY_COOKIE_DOMAIN=${SERVER_DOMAIN}
+      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
+      - SERVICE=portainer:9000
+      - GROUP=secure
+    restart: always
+    networks:
+      - core
 
   # Build server
   drone-server:
@@ -158,6 +176,7 @@ services:
       - SERVICE=portal:3000
       - GROUP=secure
     restart: always
+    command: /bin/oauth2_proxy --cookie-secure=false  --upstream="http://portal:3000"  --http-address="0.0.0.0:4180" --provider=gitlab --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" --redeem-url="http://gitlab/oauth/token" --validate-url="http://gitlab/api/v4/user" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain=*
     networks:
       - core
 
