@@ -1,5 +1,6 @@
 FROM golang as builder
 RUN git clone https://github.com/lowet84/oauth2_proxy
+RUN cat oauth2_proxy/providers/gitlab.go
 RUN mv oauth2_proxy src
 RUN go get oauth2_proxy
 RUN go install oauth2_proxy
