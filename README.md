@@ -37,11 +37,6 @@ echo SERVER_DOMAIN=fredriklowenhamn.com > .env
 (replace fredriklowenhamn.com with your domain)
 ```
 
-## Add administrators to oauth2_proxy
-```
-docker run --rm -it -v dockercidemo_oauth2proxy:/data alpine sh -c "echo "fredrik.lowenhamn@gmail.com" > /data/emails"
-```
-
 # Start containers
 ```
 docker-compose up -d ptraefik presentation
@@ -53,7 +48,8 @@ Wait for gitlab to start. https://gitlab.fredriklowenhamn.com
 
 * Change password and login (as root)
 
-* Edit your user and set the same email that was added to oauth2proxy
+* Create a group called *secure*. 
+All members of the group *secure* will be able to access oauth2proxy
 
 Test that docker registry works by logging in from host
 ```
