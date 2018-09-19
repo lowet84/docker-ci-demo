@@ -7,28 +7,12 @@ services:
   # 127.0.0.1       traefik.localhost
   traefik:
     container_name: traefik
-    image: traefik:1.7-alpine
-    restart: always
-    labels:
-      - traefik.port=8080
-      - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
-    command: --web --logLevel=DEBUG --docker 
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - core
-
-  ptraefik:
-    container_name: ptraefik
     image: public-traefik
     build: ./core-apps/traefik/
     restart: always
     ports:
       - 80:80
       - 443:443
-    labels:
-      - traefik.port=8080
-      - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
     command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
     volumes:
       - traefik:/config
@@ -36,19 +20,20 @@ services:
     networks:
       - core
 
-  oauth2proxy:
-    container_name: oauth2proxy
-    image: oauth2proxy
-    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --provider=gitlab --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" --redeem-url="http://gitlab/oauth/token"  --validate-url="http://gitlab/api/v4/user" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --gitlab-group=secure --email-domain=* --scope="api read_user"
-    volumes:
-      - oauth2proxy:/auth/
+  traefik_proxy:
+    container_name: traefik_proxy
+    image: lowet84/oauth2proxy
     labels:
-      - traefik.enable=false
+      - traefik.enable=true
+      - traefik.port=4180
+      - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
     environment:
       - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
       - OAUTH2_PROXY_COOKIE_DOMAIN=${SERVER_DOMAIN}
       - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
       - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
+      - SERVICE=traefik:8080
+      - GROUP=secure
     restart: always
     networks:
       - core
@@ -62,9 +47,24 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
      - portainer:/data
     command: --no-auth
+    networks:
+      - core
+
+  portal_proxy:
+    container_name: portal_proxy
+    image: lowet84/oauth2proxy
     labels:
-      - traefik.port=9000
-      - traefik.frontend.rule=Host:portainer.${SERVER_DOMAIN}
+      - traefik.enable=true
+      - traefik.port=4180
+      - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
+    environment:
+      - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
+      - OAUTH2_PROXY_COOKIE_DOMAIN=${SERVER_DOMAIN}
+      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
+      - SERVICE=portal:3000
+      - GROUP=secure
+    restart: always
     networks:
       - core
 
@@ -80,7 +80,7 @@ services:
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
     environment:
-      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
+      - DRONE_HOST=http://drone:8000
       - DRONE_GITLAB=true
       - DRONE_GITLAB_URL=https://gitlab.${SERVER_DOMAIN}
       - DRONE_GITLAB_PRIVATE_MODE=true
@@ -133,8 +133,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DRONE_SERVER=drone-server:9000
-    labels:      
-      - traefik.enable=false
     networks:
       - core
 
@@ -143,8 +141,6 @@ services:
     container_name: watchtower
     image: v2tec/watchtower
     restart: always
-    labels:
-      - traefik.enable=false
     command: --interval 20 --label-enable
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -182,7 +178,6 @@ volumes:
   gogs:
   portainer:
   traefik:
-  oauth2proxy:
   gitlab_config:
   gitlab_logs:
   gitlab_data:
