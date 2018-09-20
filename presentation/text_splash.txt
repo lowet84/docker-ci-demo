@@ -57,7 +57,7 @@ iiiiiiii nnnnnn    nnnnnn     77777777                 000000000          888888
 
 docker network create core
 echo SERVER_DOMAIN=fredriklowenhamn.com > .env
-docker-compose up -d ptraefik presentation
+docker-compose up -d traefik presentation
 
 ================================
 
