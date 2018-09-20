@@ -1,0 +1,94 @@
+version: '3'
+
+services:
+  # Frontend
+  web:
+    image: jitsi/web
+    volumes:
+      - web:/config
+    environment:
+      - JICOFO_AUTH_USER
+      - XMPP_DOMAIN
+      - XMPP_AUTH_DOMAIN
+      - XMPP_BOSH_URL_BASE
+      - XMPP_MUC_DOMAIN
+      - TZ
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.frontend.rule=Host:jitsi.fredriklowenhamn.com
+      - traefik.docker.network=core
+    networks:
+      meet.jitsi:
+      core:
+
+    # XMPP server
+  prosody:
+    image: jitsi/prosody
+    expose:
+      - '5222'
+      - '5347'
+      - '5280'
+    volumes:
+      - prosody:/config
+    environment:
+      - XMPP_DOMAIN
+      - XMPP_AUTH_DOMAIN
+      - XMPP_MUC_DOMAIN
+      - JICOFO_COMPONENT_SECRET
+      - JVB_COMPONENT_SECRET
+      - JICOFO_AUTH_USER
+      - JICOFO_AUTH_PASSWORD
+      - TZ
+    networks:
+      meet.jitsi:
+        aliases:
+          - xmpp.meet.jitsi
+
+    # Focus component
+  jicofo:
+    image: jitsi/jicofo
+    volumes:
+      - jicofo:/config
+    environment:
+      - XMPP_DOMAIN
+      - XMPP_AUTH_DOMAIN
+      - XMPP_SERVER=xmpp.meet.jitsi
+      - JICOFO_COMPONENT_SECRET
+      - JICOFO_AUTH_USER
+      - JICOFO_AUTH_PASSWORD
+      - TZ
+    networks:
+      meet.jitsi:
+
+    # Video bridge
+  jvb:
+    image: jitsi/jvb
+    ports:
+      - '${JVB_PORT}:${JVB_PORT}/udp'
+    volumes:
+      - jvb:/config
+    environment:
+      - DOCKER_HOST_ADDRESS
+      - XMPP_DOMAIN
+      - XMPP_AUTH_DOMAIN
+      - XMPP_SERVER=xmpp.meet.jitsi
+      - JVB_COMPONENT_SECRET
+      - JVB_PORT
+      - JVB_STUN_SERVERS
+      - JICOFO_AUTH_USER
+      - TZ
+    networks:
+      meet.jitsi:
+
+volumes:
+  jvb:
+  jicofo:
+  prosody:
+  web:
+
+# Custom network so all services can communicate using a FQDN
+networks:
+  meet.jitsi:
+  core:
+    external: true
