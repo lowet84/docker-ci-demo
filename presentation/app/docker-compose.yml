@@ -2,19 +2,19 @@ version: '3'
 services:
   demoapp:
     container_name: demoapp
-    image: docker.${DOMAIN}/${REPO}
+    image: docker.${SERVER_DOMAIN}/${REPO}
     restart: always
     networks:
       - core
     labels:
       - traefik.enable=true
       - traefik.port=3000
-      - traefik.frontend.rule=Host:demoapp.${DOMAIN}
+      - traefik.frontend.rule=Host:demoapp.${SERVER_DOMAIN}
       - com.centurylinklabs.watchtower.enable=true
 
   demoapp-test:
     container_name: demoapp-test
-    image: docker.${DOMAIN}/${REPO}
+    image: docker.${SERVER_DOMAIN}/${REPO}
     restart: always
     networks:
       - core
