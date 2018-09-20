@@ -21,25 +21,8 @@ email = "fredriklowenhamn@gmail.com" #Change this to your email
 storage = "/config/acme-public.json"
 entryPoint = "https"
 onDemand = true
-#onHostRule = true
-#caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
 entryPoint = "http"
 
-#[file]
-#watch=true
-
-#[backends]
-#  [backends.oauth2]
-#    [backends.oauth2.servers.oauth2]
-#    url = "http://oauth2proxy:4180"
-#
-#[frontends]
-#  [frontends.oauth2]
-#  backend = "oauth2"
-#  passHostHeader = true
-#  priority = 1
-#    [frontends.oauth2.routes.oauth2]
-#    rule = "HostRegexp:{catchall:.*}"
 
