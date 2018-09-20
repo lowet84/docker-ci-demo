@@ -21,7 +21,7 @@ services:
 
   demo-test-proxy:
     container_name: demo-test-proxy
-    image: docker.${DOMAIN}/${REPO}
+    image: lowet84/oauth2proxy
     labels:
       - traefik.enable=true
       - traefik.port=4180
