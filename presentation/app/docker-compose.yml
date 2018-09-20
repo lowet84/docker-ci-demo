@@ -18,6 +18,8 @@ services:
     restart: always
     networks:
       - core
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 
   demo-test-proxy:
     container_name: demo-test-proxy
