@@ -13,7 +13,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   demoapp-test:
-    container_name: demoapp
+    container_name: demoapp-test
     image: docker.${DOMAIN}/${REPO}
     restart: always
     networks:
