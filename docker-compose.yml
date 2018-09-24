@@ -7,7 +7,7 @@ services:
   # 127.0.0.1       traefik.localhost
   traefik:
     container_name: traefik
-    image: public-traefik
+    #image: public-traefik
     build: ./build/traefik/
     restart: always
     ports:
