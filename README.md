@@ -95,7 +95,7 @@ Check the build in drone.
 
 ## Start demoapp
 ```
-curl https://github.com/lowet84/docker-ci-demo/blob/master/presentation/app/docker-compose.yml | DOMAIN=fredriklowenhamn.com REPO=root/demoapp docker-compose -f - up -d
+https://raw.githubusercontent.com/lowet84/docker-ci-demo/master/presentation/app/docker-compose.yml | DOMAIN=fredriklowenhamn.com REPO=root/demoapp docker-compose -f - up -d
 ```
 
 # Watchtower
