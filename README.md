@@ -104,12 +104,9 @@ Watchtower watches for changes to the docker image on the registry and pulls and
 Set the label: com.centurylinklabs.watchtower.enable=true on all containers that should be updated automatically.
 
 # Continuous Delivery
-* Edit and push to check that the continuous delivery is working.
-  
-  
-  
-  
-  
+* Edit and push to check that the continuous delivery is working.  
+
+<br><br><br><br>
 ## Template for proxy
 ```
 (service name)_proxy:
