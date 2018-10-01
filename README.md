@@ -113,3 +113,24 @@ Set the label: com.centurylinklabs.watchtower.enable=true on all containers that
 ### Traefik
 ### Portal
 ### Presentation
+
+## Template for proxy
+```
+(service name)_proxy:
+    container_name: (service name)_proxy
+    image: lowet84/oauth2proxy
+    labels:
+      - traefik.enable=true
+      - traefik.port=4180
+      - traefik.frontend.rule=Host:(service name).${SERVER_DOMAIN}
+    environment:
+      - COOKIE_SECRET
+      - SERVER_DOMAIN
+      - CLIENT_ID
+      - CLIENT_SECRET
+      - SERVICE=(service name):(service port)
+      - GROUP=(security group)
+    restart: always
+    networks:
+      - core
+```
