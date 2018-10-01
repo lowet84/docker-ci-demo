@@ -29,10 +29,10 @@ services:
       - traefik.port=4180
       - traefik.frontend.rule=Host:demoapp-test.${SERVER_DOMAIN}
     environment:
-      - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
-      - OAUTH2_PROXY_COOKIE_DOMAIN=${SERVER_DOMAIN}
-      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
-      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
+      - COOKIE_SECRET
+      - SERVER_DOMAIN
+      - CLIENT_ID
+      - CLIENT_SECRET
       - SERVICE=demoapp-test:3000
       - GROUP=test
     restart: always
