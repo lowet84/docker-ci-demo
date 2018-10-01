@@ -105,7 +105,11 @@ Set the label: com.centurylinklabs.watchtower.enable=true on all containers that
 
 # Continuous Delivery
 * Edit and push to check that the continuous delivery is working.
-
+  
+  
+  
+  
+  
 ## Template for proxy
 ```
 (service name)_proxy:
