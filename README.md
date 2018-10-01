@@ -83,13 +83,11 @@ docker-compose up -d
 ## Enable repo in drone
 * Under secrets add docker_username and docker_secret  
 
-## Clone the app
-
-## Copy the files
-
-## Edit *.drone.yml*
-
-## Push
+## Clone & add files
+- Clone the repo you just created 
+- Add the files from presentation/app in this repo.
+- Edit *.drone.yml* and change *fredriklowenhamn.com* to your domain
+- Push
 
 Check the build in drone.
 
