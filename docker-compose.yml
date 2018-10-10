@@ -182,9 +182,7 @@ services:
       - core
 
 volumes:
-  gogs_ssh:
   drone:
-  gogs:
   portainer:
   traefik:
   gitlab_config:
