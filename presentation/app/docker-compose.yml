@@ -12,33 +12,6 @@ services:
       - traefik.frontend.rule=Host:demoapp.${SERVER_DOMAIN}
       - com.centurylinklabs.watchtower.enable=true
 
-  # demoapp-test:
-  #   container_name: demoapp-test
-  #   image: docker.${SERVER_DOMAIN}/${REPO}
-  #   restart: always
-  #   networks:
-  #     - core
-  #   labels:
-  #     - com.centurylinklabs.watchtower.enable=true
-
-  # demo-test-proxy:
-  #   container_name: demo-test-proxy
-  #   image: lowet84/oauth2proxy
-  #   labels:
-  #     - traefik.enable=true
-  #     - traefik.port=4180
-  #     - traefik.frontend.rule=Host:demoapp-test.${SERVER_DOMAIN}
-  #   environment:
-  #     - COOKIE_SECRET
-  #     - SERVER_DOMAIN
-  #     - CLIENT_ID
-  #     - CLIENT_SECRET
-  #     - SERVICE=demoapp-test:3000
-  #     - GROUP=test
-  #   restart: always
-  #   networks:
-  #     - core
-
 networks:
   core:
     external: true
