@@ -14,7 +14,8 @@
             font-weight: lighter;
             color: white;
         }
-        body{
+
+        body {
             background-color: rgb(49, 49, 49);
         }
     </style>
@@ -25,7 +26,8 @@
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange = (e) => {
-                if(document.getElementById("data").innerHTML !== Http.responseText)
+                if (document.getElementById("data").innerHTML !== Http.responseText
+                    && Http.responseText !== '')
                     document.getElementById("data").innerHTML = Http.responseText;
             }
         }
