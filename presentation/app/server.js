@@ -1,4 +1,4 @@
-// content of index.js
+// content of server.js
 const http = require('http')
 const fs = require('fs')
 const port = 3000
@@ -8,7 +8,7 @@ const requestHandler = (request, response) => {
     response.end('Some text')
   }
 
-  var file =  fs.readFileSync('index.html', 'utf8');
+  var file =  fs.readFileSync('client.html', 'utf8');
   response.end(file)
 }
 
