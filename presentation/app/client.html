@@ -27,7 +27,8 @@
             Http.send();
             Http.onreadystatechange = (e) => {
                 if (document.getElementById("data").innerHTML !== Http.responseText
-                    && Http.responseText !== '')
+                    && Http.responseText !== ''
+                    && Http.status !== 400)
                     document.getElementById("data").innerHTML = Http.responseText;
             }
         }
