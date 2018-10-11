@@ -1,3 +1,2 @@
-FROM traefik:1.7-alpine
-#RUN mkdir -p /toml
+FROM traefik
 ADD traefik-public.toml /toml/traefik-public.toml
