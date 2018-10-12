@@ -13,7 +13,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
+    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false --docker.watch
     volumes:
       - traefik:/config
       - /var/run/docker.sock:/var/run/docker.sock
