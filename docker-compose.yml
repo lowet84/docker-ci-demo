@@ -80,7 +80,7 @@ services:
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
     environment:
-      - DRONE_HOST=http://drone:8000
+      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
       - DRONE_GITLAB=true
       - DRONE_GITLAB_URL=https://gitlab.${SERVER_DOMAIN}
       - DRONE_GITLAB_PRIVATE_MODE=true
