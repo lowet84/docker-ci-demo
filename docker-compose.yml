@@ -13,7 +13,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
+    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false --docker.watch
     volumes:
       - traefik:/config
       - /var/run/docker.sock:/var/run/docker.sock
@@ -80,7 +80,7 @@ services:
       - traefik.port=8000
       - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
     environment:
-      - DRONE_HOST=http://drone:8000
+      - DRONE_HOST=https://drone.${SERVER_DOMAIN}
       - DRONE_GITLAB=true
       - DRONE_GITLAB_URL=https://gitlab.${SERVER_DOMAIN}
       - DRONE_GITLAB_PRIVATE_MODE=true

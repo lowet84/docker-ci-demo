@@ -28,7 +28,9 @@
             Http.onreadystatechange = (e) => {
                 if (document.getElementById("data").innerHTML !== Http.responseText
                     && Http.responseText !== ''
-                    && Http.status !== 400)
+                    && Http.status !== 400
+                    && !Http.responseText.startsWith('404')
+                    && !Http.responseText.startsWith('Bad Gateway'))
                     document.getElementById("data").innerHTML = Http.responseText;
             }
         }
