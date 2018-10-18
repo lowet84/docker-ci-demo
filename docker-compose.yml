@@ -166,7 +166,21 @@ services:
       - traefik.port=4180
       - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
     restart: always
-    command: /bin/oauth2_proxy --cookie-secure=false  --upstream="http://portal:3000"  --http-address="0.0.0.0:4180" --provider=gitlab --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" --redeem-url="http://gitlab/oauth/token" --validate-url="http://gitlab/api/v4/user" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain=* --cookie-secret ${COOKIE_SECRET} --cookie-domain ${SERVER_DOMAIN} --client-id ${CLIENT_ID} --client-secret ${CLIENT_SECRET}
+    command: |
+      /bin/oauth2_proxy 
+      --cookie-secure=false  
+      --upstream="http://portal:3000"  
+      --http-address="0.0.0.0:4180" 
+      --provider=gitlab 
+      --login-url="https://gitlab.${SERVER_DOMAIN}/oauth/authorize" 
+      --redeem-url="http://gitlab/oauth/token" 
+      --validate-url="http://gitlab/api/v4/user" 
+      --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" 
+      --email-domain=* 
+      --cookie-secret ${COOKIE_SECRET} 
+      --cookie-domain ${SERVER_DOMAIN} 
+      --client-id ${CLIENT_ID} 
+      --client-secret ${CLIENT_SECRET}
     networks:
       - core
 
