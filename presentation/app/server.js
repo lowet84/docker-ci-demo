@@ -6,6 +6,8 @@ const port = 3000
 const requestHandler = (request, response) => {
   if(request.url==='/data'){
     response.end('Some text')
+    // response.end('Noll till CD på 708s<br><h6>(demoapp.fredriklowenhamn.com)</h6>')
+    // response.end('708 sekunder tidigare...')
   }
 
   var file =  fs.readFileSync('client.html', 'utf8');
